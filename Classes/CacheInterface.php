@@ -19,7 +19,7 @@ interface CacheInterface
      * @param string  $key
      * @param mixed   $val
      * @param integer $ttl
-     * @return mixed
+     * @return void
      */
     public function set($key, $val, $ttl = NULL);
 
@@ -27,7 +27,7 @@ interface CacheInterface
 
     /**
      * @param $key
-     * @return mixed
+     * @return mixed|null
      */
     public function get($key);
 
@@ -35,7 +35,7 @@ interface CacheInterface
 
     /**
      * @param $key
-     * @return mixed
+     * @return void
      */
     public function flush($key);
 }

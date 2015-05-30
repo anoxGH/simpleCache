@@ -16,10 +16,18 @@ class SessionCache implements CacheInterface
 
 
     /**
+     * @var string
+     */
+    protected $cacheKey = NULL;
+
+
+
+    /**
      * __construct
      */
-    public function __construct()
+    public function __construct($cacheKey = NULL)
     {
+        $this->cacheKey = ($cacheKey === NULL) ? __CLASS__ : $cacheKey;
         $this->_initializeSession();
     }
 
@@ -38,9 +46,9 @@ class SessionCache implements CacheInterface
         {
             session_start();
         }
-        if (!isset($_SESSION[__CLASS__]))
+        if (!isset($_SESSION[$this->cacheKey]))
         {
-            $_SESSION[__CLASS__] = array();
+            $_SESSION[$this->cacheKey] = array();
         }
     }
 
@@ -55,11 +63,11 @@ class SessionCache implements CacheInterface
      */
     public function set($key, $val, $ttl = NULL)
     {
-        $cacheEntry                = array(
+        $cacheEntry                      = array(
             'content' => $val,
             'expires' => (($ttl === NULL) ? $ttl : time() + $ttl)
         );
-        $_SESSION[__CLASS__][$key] = serialize($cacheEntry);
+        $_SESSION[$this->cacheKey][$key] = serialize($cacheEntry);
     }
 
 
@@ -70,14 +78,14 @@ class SessionCache implements CacheInterface
      */
     public function get($key)
     {
-        if (isset($_SESSION[__CLASS__][$key]))
+        if (isset($_SESSION[$this->cacheKey][$key]))
         {
-            $cacheEntry = unserialize($_SESSION[__CLASS__][$key]);
+            $cacheEntry = unserialize($_SESSION[$this->cacheKey][$key]);
             if ($cacheEntry['expires'] >= time())
             {
                 return $cacheEntry['content'];
             }
-            unset($_SESSION[__CLASS__][$key]);
+            unset($_SESSION[$this->cacheKey][$key]);
         }
         return NULL;
     }
@@ -91,6 +99,6 @@ class SessionCache implements CacheInterface
      */
     public function flush($key)
     {
-        unset($_SESSION[__CLASS__][$key]);
+        unset($_SESSION[$this->cacheKey][$key]);
     }
 }

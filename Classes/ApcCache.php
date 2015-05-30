@@ -2,7 +2,7 @@
 namespace AnoxGH\SimpleCache;
 
 /**
- * Class FileCache
+ * Class ApcCache
  *
  * @author    Sebastian Gieselmann <s.gieselmann@live.com>
  * @copyright Copyright (c) 2015, Sebastian Gieselmann

@@ -39,12 +39,6 @@ class FileCache implements CacheInterface
     protected $entryFileChmod = 0664;
 
 
-    /**
-     * @var array
-     */
-    protected $entryFilenameCache = array();
-
-
 
     /**
      * @param string $cacheDirectory
@@ -154,11 +148,7 @@ class FileCache implements CacheInterface
      */
     public function getEntryFilenameByKey($key)
     {
-        if (isset($this->entryFilenameCache[$key]))
-        {
-            return $this->entryFilenameCache[$key];
-        }
-        return $this->entryFilenameCache[$key] = $this->getCacheDirectory() . '/' . sha1($key) . '.dat';
+        return $this->getCacheDirectory() . '/' . $key . '.dat';
     }
 
 
