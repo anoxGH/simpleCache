@@ -50,6 +50,8 @@ class SessionCache implements CacheInterface
      * @param string   $key
      * @param mixed    $val
      * @param null|int $ttl
+     *
+     * @return void
      */
     public function set($key, $val, $ttl = NULL)
     {
@@ -64,7 +66,7 @@ class SessionCache implements CacheInterface
 
     /**
      * @param $key
-     * @return null|mixed
+     * @return mixed|null
      */
     public function get($key)
     {
@@ -84,6 +86,8 @@ class SessionCache implements CacheInterface
 
     /**
      * @param $key
+     *
+     * @return void
      */
     public function flush($key)
     {

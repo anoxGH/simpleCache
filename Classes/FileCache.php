@@ -97,6 +97,8 @@ class FileCache implements CacheInterface
      * @param mixed  $val
      * @param int    $ttl
      * @param int    $chmod
+     *
+     * @return void
      */
     public function set($key, $val, $ttl = NULL, $chmod = NULL)
     {
@@ -116,7 +118,7 @@ class FileCache implements CacheInterface
      * get
      *
      * @param string $key
-     * @return null|mixed
+     * @return mixed|null
      */
     public function get($key)
     {
@@ -147,6 +149,7 @@ class FileCache implements CacheInterface
 
     /**
      * @param string $key
+     *
      * @return string
      */
     public function getEntryFilenameByKey($key)
@@ -162,6 +165,7 @@ class FileCache implements CacheInterface
 
     /**
      * @param $key
+     * @return void
      */
     public function flush($key)
     {

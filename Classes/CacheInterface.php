@@ -13,8 +13,30 @@ namespace AnoxGH\SimpleCache;
 interface CacheInterface
 {
 
+
+
+    /**
+     * @param string  $key
+     * @param mixed   $val
+     * @param integer $ttl
+     * @return mixed
+     */
     public function set($key, $val, $ttl = NULL);
+
+
+
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function get($key);
+
+
+
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function flush($key);
 }
 
