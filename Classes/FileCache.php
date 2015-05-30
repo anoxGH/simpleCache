@@ -7,9 +7,10 @@ namespace AnoxGH\SimpleCache;
  * @author    Sebastian Gieselmann <s.gieselmann@live.com>
  * @copyright Copyright (c) 2015, Sebastian Gieselmann
  * @package   AnoxGH\SimpleCache
+ * @link      https://github.com/anoxGH/simpleCache
  * @license   http://opensource.org/licenses/GPL-2.0
  */
-class FileCache
+class FileCache implements CacheInterface
 {
 
 
@@ -115,7 +116,7 @@ class FileCache
      * get
      *
      * @param string $key
-     * @return mixed
+     * @return null|mixed
      */
     public function get($key)
     {
